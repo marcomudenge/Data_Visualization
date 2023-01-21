@@ -121,16 +121,11 @@ def radio_updated(mode, figure):
     '''
     # TODO : Update the figure's data and y axis, as well as the informational
     # text indicating the mode
-    new_fig = figure
     
-    #TODO : use draw and update_y_axis
+    new_fig = bar_chart.draw(figure, data, mode)
+    new_fig = bar_chart.update_y_axis(new_fig, mode)
     
-    if mode == "Percent":
-        new_fig['layout']['yaxis'] = dict(title= 'Lines (%)')
-    else:
-        new_fig['layout']['yaxis'] = dict(title= 'Lines (%s)' % mode)
-    
-    return new_fig, mode #TODO : ask TA if we have to format mode for displaying in footer
+    return new_fig, mode
 
 
 data = prep_data()

@@ -50,15 +50,12 @@ def create_template():
     templ.layout = go.Layout(
         dict(
             paper_bgcolor = THEME['background_color'],
-            plot_bgcolor = THEME['background_color']
+            plot_bgcolor = THEME['background_color'],
+            colorway = THEME['bar_colors'],
+            font = {'color': THEME['font_color'], 'family': THEME['font_family']},
+            hovermode = 'closest'
         )
     )
-    
-    templ.data.bar = [
-        go.Bar(
-            marker_color = THEME['bar_colors']
-        )
-    ]
     
     pio.templates["INF8808_TP2"] = templ
     

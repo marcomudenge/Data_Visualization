@@ -60,19 +60,19 @@ def replace_others(my_df):
     '''
     
     # Find the top 5 players of each act
-    top_players = my_df.groupby(['Act', ])["PlayerLine"].nlargest(5)
+    top_players = my_df.groupby(['Player']).agg({'PlayerLine':'sum'})['PlayerLine'].nlargest(5)
     
     # Create a mask for the players that are not in the top 5
-    mask = ~my_df.index.isin(top_players.index.get_level_values(1))
+    mask = ~my_df.Player.isin(top_players.index)
 
     # For each act, rename players not in the top 5
-    my_df.loc[mask, 'Player'] = 'Others'
+    my_df.loc[mask, 'Player'] = 'OTHER'
     
     # Update count and percentage of plays
     my_df = my_df.groupby(['Act','Player'], as_index=False).agg({'PlayerLine': 'sum','PlayerPercent':'sum'})
     
     # Rename columns
-    my_df = my_df.rename(columns={'PlayerLine':'LineCount','PlayerPercent':'PercentCount'})
+    my_df = my_df.rename(columns={'PlayerLine':'LineCount','PlayerPercent':'LinePercent'})
     
     return my_df
 

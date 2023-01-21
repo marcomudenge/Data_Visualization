@@ -46,6 +46,21 @@ def draw(fig, data, mode):
     '''
     fig = go.Figure(fig)  # conversion back to Graph Object
     # TODO : Update the figure's data according to the selected mode
+    
+    fig.data = [] #reset figure before updating
+    
+    Acts = ["Act "+str(i) for i in range(1,6)]
+    
+    for char in sorted(set(data['Player'])): #sorted to have the blocks in the same order as in Fig2 and 3
+        fig.add_trace(go.Bar(
+                x = Acts,
+                y = data.loc[data['Player'] == char][MODE_TO_COLUMN[mode]],  
+                name = char
+                #not exactly : sometimes a Player doesn't speak in an act
+                #TODO : take this into account
+            )
+        )
+    
     return fig
 
 
@@ -59,4 +74,11 @@ def update_y_axis(fig, mode):
         Returns: 
             The updated figure
     '''
-    # TODO : Update the y axis title according to the current mode
+    new_fig = go.Figure(fig)
+    
+    if mode == "Percent":
+        new_fig.update_yaxes(title='Lines (%)')
+    else:
+        new_fig.update_yaxes(title= 'Lines (Count)')
+        
+    return new_fig
