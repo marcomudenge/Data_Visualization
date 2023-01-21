@@ -45,8 +45,6 @@ def draw(fig, data, mode):
     fig = go.Figure(fig)  # conversion back to Graph Object
     fig.data = [] #reset figure before updating
     
-    Acts = ["Act "+str(i) for i in range(1,6)]
-    
     for char in sorted(set(data['Player'])): #sorted to have the blocks in the same order as in Fig2 and 3
         fig.add_trace(go.Bar(
                 x = ["Act "+ str(i) for i in data[data["Player"] == char]["Act"]],
