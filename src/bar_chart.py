@@ -49,7 +49,7 @@ def draw(fig, data, mode):
     
     for char in sorted(set(data['Player'])): #sorted to have the blocks in the same order as in Fig2 and 3
         fig.add_trace(go.Bar(
-                x = data[data["Player"] == char]["Act"],
+                x = ["Act "+ str(i) for i in data[data["Player"] == char]["Act"]],
                 y = data.loc[data['Player'] == char][MODE_TO_COLUMN[mode]],  
                 name = char,
                 hovertemplate = get_hover_template(char, mode)
