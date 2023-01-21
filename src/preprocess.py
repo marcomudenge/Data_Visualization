@@ -59,7 +59,7 @@ def replace_others(my_df):
             5 for the play grouped as 'OTHER'
     '''
     
-    # Find the top 5 players of each act
+    # Find the top 5 players through the whole play
     top_players = my_df.groupby(['Player']).agg({'PlayerLine':'sum'})['PlayerLine'].nlargest(5)
     
     # Create a mask for the players that are not in the top 5

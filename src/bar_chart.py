@@ -20,14 +20,17 @@ def init_figure():
             fig: The figure which will display the bar chart
     '''
     fig = go.Figure()
-
+    
     fig.update_layout(
-        template=pio.templates['INF8808_TP2'], #TODO : ask if we really had to create a theme or just update simple_white
+        template="simple_white+INF8808_TP2", #TODO : ask if we really had to create a theme or just update simple_white
+                                             # Comment 23/01/01 : Let's ask if this the way to do it. By combining the
+                                             # templates, we can now see the Title on the left and the thin white lining 
+                                             # separating the players. Also, the grid has now disappeared as in the PDF exemple.
         dragmode=False,
         barmode='relative',
-        title='Lines per act' #TODO : ask if title needs to be aligned to the left (fig 2 and 3)
+        title='Lines per act'
     )
-
+    
     return fig
 
 
@@ -51,8 +54,6 @@ def draw(fig, data, mode):
                 y = data.loc[data['Player'] == char][MODE_TO_COLUMN[mode]],  
                 name = char,
                 hovertemplate = get_hover_template(char, mode)
-                #not accurate : Romeo doesn't speak in act IV and his data for Act V are shifted
-                #TODO : fix this
             )
         )
     
