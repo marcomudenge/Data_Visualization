@@ -12,7 +12,7 @@ def get_hover_template(name, mode):
             * A title stating player name with:
                 - Font family: Grenze Gotish
                 - Font size: 24px
-                - Font color: Black
+                - Font color: Black                                 #TODO : set font color
             * The number of lines spoken by the player, formatted as:
                 - The number of lines if the mode is 'Count ("X lines").
                 - The percent of lines fomatted with two
@@ -25,6 +25,14 @@ def get_hover_template(name, mode):
         Returns:
             The hover template with the elements descibed above
     '''
-    # TODO: Generate and return the over template
 
-    return ''
+    if mode == 'Percent':
+        hov = '<span style="font-size:24px; color=black; font-family:\'Grenze Gotisch\';">'+name+'</span>'+\
+              '<br><br>%{y:.2f}% of lines'+\
+              '<extra></extra>'
+    else:
+        hov = '<span style="font-size:24px; color=#000000; font-family:\'Grenze Gotisch\';">'+name+'</span>'+\
+              '<br><br>%{y} lines'+\
+              '<extra></extra>'
+    
+    return hov

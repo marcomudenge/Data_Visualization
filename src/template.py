@@ -53,11 +53,12 @@ def create_template():
             plot_bgcolor = THEME['background_color'],
             colorway = THEME['bar_colors'],
             font = {'color': THEME['font_color'], 'family': THEME['font_family']},
-            hovermode = 'closest'
+            hovermode = 'closest',
+            hoverlabel = {'bgcolor': THEME['label_background_color'], 
+                          'font_size': THEME['label_font_size'], #only applies to number of lines. player has its own size
+                          'font_color': THEME['font_color']}
         )
     )
     
     pio.templates["INF8808_TP2"] = templ
     
-    
-    # TODO : Define a theme as defined above

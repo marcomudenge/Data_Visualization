@@ -21,13 +21,11 @@ def init_figure():
     '''
     fig = go.Figure()
 
-    # TODO : Update the template to include our new theme and set the title
-
     fig.update_layout(
-        template=pio.templates['INF8808_TP2'],
+        template=pio.templates['INF8808_TP2'], #TODO : ask if we really had to create a theme or just update simple_white
         dragmode=False,
         barmode='relative',
-        title='Lines per act'
+        title='Lines per act' #TODO : ask if title needs to be aligned to the left (fig 2 and 3)
     )
 
     return fig
@@ -45,8 +43,6 @@ def draw(fig, data, mode):
             fig: The figure comprising the drawn bar chart
     '''
     fig = go.Figure(fig)  # conversion back to Graph Object
-    # TODO : Update the figure's data according to the selected mode
-    
     fig.data = [] #reset figure before updating
     
     Acts = ["Act "+str(i) for i in range(1,6)]
@@ -55,9 +51,10 @@ def draw(fig, data, mode):
         fig.add_trace(go.Bar(
                 x = Acts,
                 y = data.loc[data['Player'] == char][MODE_TO_COLUMN[mode]],  
-                name = char
-                #not exactly : sometimes a Player doesn't speak in an act
-                #TODO : take this into account
+                name = char,
+                hovertemplate = get_hover_template(char, mode)
+                #not accurate : Romeo doesn't speak in act IV and his data for Act V are shifted
+                #TODO : fix this
             )
         )
     
