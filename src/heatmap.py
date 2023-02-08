@@ -22,4 +22,13 @@ def get_figure(data):
     # TODO : Create the heatmap. Make sure to set dragmode=False in
     # the layout. Also don't forget to include the hover template.
 
+    fig = px.imshow(data,
+                    labels=dict(x="Year", y="Neighborhood", color="Trees"),)
+    
+    fig.update_layout(
+        dragmode=False,
+    )
+
+    fig.show()
+
     return None
