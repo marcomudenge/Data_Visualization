@@ -102,7 +102,8 @@ def get_figure(line_data, arrond, year):
         title = "Trees planted in "+arrond+" in "+year, #year is a string (in click_data from @app.callback)
         xaxis_title = "",
         yaxis_title = "Trees",
-        #hover template here ?
     )
 
+    fig.update_traces(hovertemplate = hover_template.get_linechart_hover_template())
+    
     return fig
