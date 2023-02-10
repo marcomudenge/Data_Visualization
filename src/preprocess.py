@@ -78,14 +78,9 @@ def restructure_df(yearly_df):
         Returns:
             The restructured dataframe
     '''
-    # Get np arrays of unique areas and years. Used for index names and columns headers
-    years = np.sort(yearly_df['Date_Plantation'].unique())
-    areas = np.sort(yearly_df['Arrond_Nom'].unique())
-    frame = pd.DataFrame(columns=years, index=areas)
-    # Match all area/year in yearly_df to new frame
-    for _, row in yearly_df.iterrows():
-        frame.loc[[row['Arrond_Nom']],[row['Date_Plantation']]] = row['count']
-    # Replace nan with zeros 
+    #create the desired df from yearly_df
+    frame = yearly_df.pivot(index='Arrond_Nom', columns='Date_Plantation', values='count')
+
     frame = frame.fillna(0)
     return frame
 
@@ -104,6 +99,8 @@ def get_daily_info(dataframe, arrond, year):
             The daily tree count data for that
             neighborhood and year.
     '''
+    year = int(year) #year as returned by the @app.callback is a string, causing isuues w/ filtering and date_range
+
     # Filter frame on arrond and year
     dataframe = dataframe[(dataframe['Arrond_Nom']==arrond) & (dataframe['Date_Plantation'].dt.year == year)]
     

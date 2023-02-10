@@ -28,7 +28,6 @@ def get_figure(data):
     fig.update_layout(
         dragmode=False,
     )
+    #fig.show()
 
-    fig.show()
-
-    return None
+    return fig
