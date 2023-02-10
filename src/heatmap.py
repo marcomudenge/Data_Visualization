@@ -27,7 +27,7 @@ def get_figure(data):
     
     fig.update_layout(
         dragmode=False,
+        #hover template here ?
     )
-    #fig.show()
 
     return fig

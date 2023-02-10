@@ -16,9 +16,27 @@ def get_empty_figure():
 
     '''
 
-    # TODO : Construct the empty figure to display. Make sure to 
-    # set dragmode=False in the layout.
-    return None
+    fig = px.line()
+    fig.update_layout(
+        dragmode=False
+    )
+    fig.add_annotation(
+        text="No data to display. Select a cell in the heatmap for more information.",
+        showarrow=False
+    )
+
+    fig.update_yaxes(
+        range=[0, 1],   #setting the range to have the percentages working for displaying the rectangle
+        showgrid=False,         #hiding everything else
+        showticklabels=False,
+        zeroline=False
+    )
+    fig.update_xaxes(
+        showgrid=False,
+        showticklabels=False
+    )
+
+    return fig
 
 
 def add_rectangle_shape(fig):
@@ -31,7 +49,14 @@ def add_rectangle_shape(fig):
         paper of the figure. The height goes from
         0.25% to 0.75% the height of the figure.
     '''
-    # TODO : Draw the rectangle
+    fig.add_hrect(
+        yref='paper',
+        y0=0.25,
+        y1=0.75,
+        line_width=0,
+        fillcolor='lime' #'pale_color'
+    )
+
     return None
 
 
@@ -56,5 +81,28 @@ def get_figure(line_data, arrond, year):
         Returns:
             The figure to be displayed
     '''
-    # TODO : Construct the required figure. Don't forget to include the hover template
-    return None
+    # TODO : Construct the required figure.     => done
+    # TODO : Don't forget to include the hover template
+
+    if len(line_data) == 1:
+        fig = px.scatter(line_data,
+            x = 'Date_Plantation',
+            y = 'Counts'
+        )
+    else:
+        fig = px.line(line_data,
+            x = 'Date_Plantation', 
+            y = 'Counts'
+        )
+    
+    fig.update_xaxes(
+        tickformat = "%d %b" #zero-padded day + space + abbreviated month
+    )
+    fig.update_layout(
+        title = "Trees planted in "+arrond+" in "+year, #year is a string (in click_data from @app.callback)
+        xaxis_title = "",
+        yaxis_title = "Trees",
+        #hover template here ?
+    )
+
+    return fig

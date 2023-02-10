@@ -64,6 +64,10 @@ def create_custom_theme():
             colorscale={'sequential': THEME['colorscale']}
             )
     )
+    templ.data.scatter = [go.Scatter(
+        marker_color = THEME['line_chart_color'],
+        line_color = THEME['line_chart_color']
+    )]
     
     pio.templates["INF8808_TP3"] = templ
 
@@ -73,5 +77,4 @@ def set_default_theme():
         Sets the default theme to be a combination of the
         'plotly_white' theme and our custom theme.
     '''
-    # TODO : Set default theme
     pio.templates.default = "plotly_white+INF8808_TP3"
