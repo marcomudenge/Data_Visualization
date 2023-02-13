@@ -52,21 +52,22 @@ def create_custom_theme():
     
     templ.layout = go.Layout(
         dict(
-            paper_bgcolor = THEME['background_color'],
-            plot_bgcolor = THEME['background_color'],
-            font = {'color': THEME['dark_color'], 'family': THEME['font_family']},
-            hovermode = 'closest',
-            hoverlabel = {'bgcolor': THEME['label_background_color'], 
-                          'font_size': THEME['label_font_size'],
-                          'font_color': THEME['dark_color']},
-            xaxis = {'tickangle': -45},
-            coloraxis = {'autocolorscale': True},
+            paper_bgcolor=THEME['background_color'],
+            plot_bgcolor=THEME['background_color'],
+            font={'color': THEME['dark_color'], 'family': THEME['font_family']},
+            hovermode='closest',
+            hoverlabel={'bgcolor': THEME['label_background_color'],
+                        'font_size': THEME['label_font_size'],
+                        'font_color': THEME['dark_color']},
+            xaxis={'tickangle': -45},
+            coloraxis={'autocolorscale': True},
             colorscale={'sequential': THEME['colorscale']}
             )
     )
+
     templ.data.scatter = [go.Scatter(
-        marker_color = THEME['line_chart_color'],
-        line_color = THEME['line_chart_color']
+        line=dict(color=THEME['line_chart_color']),
+        marker=dict(color=THEME['line_chart_color'])
     )]
     
     pio.templates["INF8808_TP3"] = templ
