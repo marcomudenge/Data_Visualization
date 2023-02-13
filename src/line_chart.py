@@ -23,7 +23,7 @@ def get_empty_figure():
     fig.add_annotation(
         text="No data to display. Select a cell in the heatmap for more information.",
         showarrow=False,
-        font=dict(size=10)
+        font=dict(size=10) #not sure if we had to fix it but it makes the page look closer to the TP guide
     )
 
     fig.update_yaxes(
@@ -55,7 +55,7 @@ def add_rectangle_shape(fig):
         y0=0.25,
         y1=0.75,
         line_width=0,
-        fillcolor='rgb(222,217,225)'  # Same color as in TP guide
+        fillcolor=THEME['pale_color']
     )
     return None
 
@@ -81,8 +81,6 @@ def get_figure(line_data, arrond, year):
         Returns:
             The figure to be displayed
     '''
-    # TODO : Construct the required figure.     => done
-    # TODO : Don't forget to include the hover template
 
     if len(line_data) == 1:
         fig = px.scatter(line_data,

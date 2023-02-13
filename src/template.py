@@ -61,14 +61,10 @@ def create_custom_theme():
                         'font_color': THEME['dark_color']},
             xaxis={'tickangle': -45},
             coloraxis={'autocolorscale': True},
-            colorscale={'sequential': THEME['colorscale']}
+            colorscale={'sequential': THEME['colorscale']},
+            colorway=[THEME['line_chart_color']] #sets for both line and marker modes of scatter
             )
     )
-
-    templ.data.scatter = [go.Scatter(
-        line=dict(color=THEME['line_chart_color']),
-        marker=dict(color=THEME['line_chart_color'])
-    )]
     
     pio.templates["INF8808_TP3"] = templ
 
