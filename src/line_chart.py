@@ -22,12 +22,13 @@ def get_empty_figure():
     )
     fig.add_annotation(
         text="No data to display. Select a cell in the heatmap for more information.",
-        showarrow=False
+        showarrow=False,
+        font=dict(size=10)
     )
 
     fig.update_yaxes(
-        range=[0, 1],   #setting the range to have the percentages working for displaying the rectangle
-        showgrid=False,         #hiding everything else
+        range=[0, 1],   # setting the range to have the percentages working for displaying the rectangle
+        showgrid=False,         # hiding everything else
         showticklabels=False,
         zeroline=False
     )
@@ -54,9 +55,8 @@ def add_rectangle_shape(fig):
         y0=0.25,
         y1=0.75,
         line_width=0,
-        fillcolor='lime' #'pale_color'
+        fillcolor='rgb(222,217,225)'  # Same color as in TP guide
     )
-
     return None
 
 
