@@ -47,7 +47,6 @@ def create_custom_theme():
         Specifies the x-axis ticks are tilted 45
         degrees to the right.
     '''
-    # TODO : Generate template described above
     templ = go.layout.Template()
     
     templ.layout = go.Layout(

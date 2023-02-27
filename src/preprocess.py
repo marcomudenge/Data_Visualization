@@ -103,8 +103,7 @@ def get_daily_info(dataframe, arrond, year):
 
     # Filter frame on arrond and year
     dataframe = dataframe[(dataframe['Arrond_Nom']==arrond) & (dataframe['Date_Plantation'].dt.year == year)]
-    
-    # Drop unnecessary columns
+
     dataframe = dataframe.drop(['Arrond', 'Longitude', 'Latitude'], axis=1)
     
     # Count number of trees for every date, sort by date

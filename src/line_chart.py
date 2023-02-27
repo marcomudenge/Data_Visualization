@@ -6,6 +6,9 @@ import hover_template
 
 from template import THEME
 
+#Note : the density of the x axis ticks does not match what is in the TP statement 
+#(see Fig. 5 for Le Sud-Ouest in 2018, one tick per 2 weeks vs. 1 tick per month in our case)
+#As there was no guideline for this in the statement, we did not set the density of ticks.
 
 def get_empty_figure():
     '''
@@ -97,7 +100,7 @@ def get_figure(line_data, arrond, year):
         tickformat = "%d %b" #zero-padded day + space + abbreviated month
     )
     fig.update_layout(
-        title = "Trees planted in "+arrond+" in "+year, #year is a string (in click_data from @app.callback)
+        title = "Trees planted in "+arrond+" in "+year,
         xaxis_title = "",
         yaxis_title = "Trees",
     )

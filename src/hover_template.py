@@ -2,6 +2,8 @@
     Provides the templates for the tooltips.
 '''
 
+#In the TP statement, there is a little blank space between the arrow and the text in hover templates (see fig. 7 and 8).
+#As there was no guideline for this in the statement, we did not add this space in our template.
 
 def get_heatmap_hover_template():
     '''
