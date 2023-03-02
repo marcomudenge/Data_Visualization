@@ -1,0 +1,6 @@
+src/env*
+src/__pycache__/
+
+**/.DS_Store
+
+*.pdf
