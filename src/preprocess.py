@@ -1,7 +1,7 @@
 '''
     Contains some functions to preprocess the data used in the visualisation.
 '''
-
+import pandas as pd
 
 def round_decimals(my_df):
     '''
@@ -12,8 +12,7 @@ def round_decimals(my_df):
         returns:
             The dataframe with rounded numbers
     '''
-    # TODO : Round the dataframe
-    return None
+    return my_df.round(2)
 
 
 def get_range(col, df1, df2):
@@ -27,9 +26,10 @@ def get_range(col, df1, df2):
             df2: The first dataframe containing a column with the given name
         returns:
             The minimum and maximum values across the two dataframes
-    '''
-    # TODO : Get the range from the dataframes
-    return []
+    '''   
+    combined_col = pd.concat([df1[col], df2[col]])
+    
+    return [combined_col.min(), combined_col.max()]
 
 
 def combine_dfs(df1, df2):
@@ -47,8 +47,10 @@ def combine_dfs(df1, df2):
             containing the value 2000 or 2015, depending on its
             original dataframe.
     '''
-    # TODO : Combine the two dataframes
-    return None
+    df1['Year'] = 2000
+    df2['Year'] = 2015
+    
+    return pd.concat([df1, df2])
 
 
 def sort_dy_by_yr_continent(my_df):
@@ -60,5 +62,4 @@ def sort_dy_by_yr_continent(my_df):
         returns:
             The sorted dataframe.
     '''
-    # TODO : Sort the dataframe
-    return None
+    return my_df.sort_values(['Year', 'Continent'])
