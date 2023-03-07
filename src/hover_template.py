@@ -16,6 +16,16 @@ def get_bubble_hover_template():
         returns:
             The content of the tooltip
     '''
-    # TODO : Generate tooltip
+    # TODO : Remaining : Add correct values (replace xy,x,z) - MM 2023/03/07
 
-    return ''
+    hov = '<span style="font-weight:bold; color:black;">'+ "Country : "+'</span>'+\
+          '<span style="font-weight:normal; color:black;">'+ '%{y}' +'</span>'   +\
+          '<span style="font-weight:bold; color:black;">'+ "<br>Population : "+'</span>'+\
+          '<span style="font-weight:normal; color:black;">'+ '%{x}' +'</span>'   +\
+          '<span style="font-weight:bold; color:black;">'+ "<br>GDP : "+'</span>'+\
+          '<span style="font-weight:normal; color:black;">'+ '%{z}' +'</span>'+\
+          '<span style="font-weight:bold; color:black;">'+ "<br>CO2 emissions : "+'</span>'+\
+          '<span style="font-weight:normal; color:black;">'+ '%{z}' +'</span>'+\
+              '<extra></extra>'
+    
+    return hov
