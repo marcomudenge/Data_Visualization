@@ -16,16 +16,15 @@ def get_bubble_hover_template():
         returns:
             The content of the tooltip
     '''
-    # TODO : Remaining : Add correct values (replace xy,x,z) - MM 2023/03/07
 
-    hov = '<span style="font-weight:bold; color:black;">'+ "Country : "+'</span>'+\
-          '<span style="font-weight:normal; color:black;">'+ '%{y}' +'</span>'   +\
-          '<span style="font-weight:bold; color:black;">'+ "<br>Population : "+'</span>'+\
-          '<span style="font-weight:normal; color:black;">'+ '%{x}' +'</span>'   +\
-          '<span style="font-weight:bold; color:black;">'+ "<br>GDP : "+'</span>'+\
-          '<span style="font-weight:normal; color:black;">'+ '%{z}' +'</span>'+\
-          '<span style="font-weight:bold; color:black;">'+ "<br>CO2 emissions : "+'</span>'+\
-          '<span style="font-weight:normal; color:black;">'+ '%{z}' +'</span>'+\
+    hov = '<span style="font-weight:bold;">Country : </span>'+\
+          '<span style="font-weight:normal;">%{id}</span>'   +\
+          '<span style="font-weight:bold;"><br>Population : </span>'+\
+          '<span style="font-weight:normal;">%{marker.size}</span>'   +\
+          '<span style="font-weight:bold;"><br>GDP : </span>'+\
+          '<span style="font-weight:normal;">%{x} $ (USD)</span>'+\
+          '<span style="font-weight:bold;"><br>CO2 emissions : </span>'+\
+          '<span style="font-weight:normal;">%{y} metric tonnes</span>'+\
               '<extra></extra>'
     
     return hov

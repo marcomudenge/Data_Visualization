@@ -26,16 +26,17 @@ def get_plot(my_df, gdp_range, co2_range):
         Returns:
             The generated figure
     '''
-    # TODO : Remaining : set the minimum mark size to 6 - MM 2023/03/07
     fig = px.scatter(my_df, x="GDP", y="CO2",
                      animation_frame="Year",
                      animation_group="Country Name",
-                     size="Population", color="Continent",
-                     color_discrete_sequence=px.colors.qualitative.Set1,
-                     hover_name="Country Name", log_x=True, size_max=30,
+                     size="Population", size_max=30,
+                     color="Continent", color_discrete_sequence=px.colors.qualitative.Set1,
+                     hover_name="Country Name", 
+                     log_x=True, log_y=True,
                      range_x=[min(gdp_range),max(gdp_range)], 
                      range_y=[min(co2_range),max(co2_range)],
                      )
+    fig.update_traces(marker_sizemin=6, selector=dict(type='scatter')) 
 
     return fig
 
@@ -50,9 +51,14 @@ def update_animation_hover_template(fig):
         Returns:
             The updated figure
     '''
-    # TODO : Remaining : "as well as the hover template of each trace ..."
+    #updating for all frames :
+    for frame in fig.frames:
+        for i in range(len(frame.data)):
+            frame.data[i].hovertemplate = hover_template.get_bubble_hover_template()
     
+    #we have to keep this or else we will have default template before playing animation :
     fig.update_traces(hovertemplate=hover_template.get_bubble_hover_template())
+    
     return fig
 
 
@@ -66,7 +72,20 @@ def update_animation_menu(fig):
         Returns
             The updated figure
     '''
-    # TODO : Update animation menu
+    fig['layout']['updatemenus'][0]['buttons'] =[
+       {
+           'args': [None, {'frame': {'duration':
+                                               500, 'redraw': False},
+                                               'mode': 'immediate',
+                                               'fromcurrent': True,
+                                               'transition': {'duration':
+                                               500, 'easing': 'linear'}}],
+           'label': 'Animate',
+           'method': 'animate'
+       }
+    ]
+
+    fig['layout']['sliders'][0]['currentvalue']['prefix'] = 'Data for year : '
 
     return fig
 
