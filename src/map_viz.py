@@ -29,8 +29,14 @@ def add_choro_trace(fig, montreal_data, locations, z_vals, colorscale):
             fig: The updated figure with the choropleth trace
 
     '''
-    # TODO : Draw the map base
-    return None
+    fig.add_trace(go.Choroplethmapbox(geojson=montreal_data, 
+                           locations=locations, featureidkey='properties.NOM',
+                           z=z_vals, colorscale=colorscale, showscale=False,
+                           marker_opacity=0.5,
+                          )
+    )
+                               
+    return fig
 
 
 def add_scatter_traces(fig, street_df):
@@ -48,4 +54,4 @@ def add_scatter_traces(fig, street_df):
 
     '''
     # TODO : Add the scatter markers to the map base
-    return None
+    return fig

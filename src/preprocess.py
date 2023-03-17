@@ -40,6 +40,7 @@ def update_titles(my_df):
                 made according to the 'TITLES' dictionary
     '''
     my_df['properties.TYPE_SITE_INTERVENTION'] = my_df['properties.TYPE_SITE_INTERVENTION'].apply(lambda x: TITLES[x])
+    
     return my_df
 
 
@@ -54,6 +55,7 @@ def sort_df(my_df):
             my_df: The sorted dataframe
     '''
     my_df = my_df.sort_values(by=['properties.TYPE_SITE_INTERVENTION'])
+
     return my_df
 
 
