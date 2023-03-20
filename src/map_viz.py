@@ -27,15 +27,13 @@ def add_choro_trace(fig, montreal_data, locations, z_vals, colorscale):
             colorscale: The table to use for the choropleth's color scale
         Returns:
             fig: The updated figure with the choropleth trace
-
     '''
-    fig.add_trace(go.Choroplethmapbox(geojson=montreal_data, 
-                           locations=locations, featureidkey='properties.NOM',
-                           z=z_vals, colorscale=colorscale, showscale=False,
-                           marker_opacity=0.5,
-                          )
-    )
-                               
+
+    fig.add_trace(go.Choroplethmapbox(geojson=montreal_data,
+                  locations=locations, featureidkey='properties.NOM',
+                  z=z_vals, colorscale=colorscale, showscale=False,
+                  marker_opacity=0.5))
+
     return fig
 
 
@@ -51,7 +49,13 @@ def add_scatter_traces(fig, street_df):
                 pedestrian paths to display
         Returns:
             The figure now containing the scatter trace
-
     '''
-    # TODO : Add the scatter markers to the map base
-    return fig
+
+    scatter = px.scatter_mapbox(street_df,
+                                lat='properties.LATITUDE', lon='properties.LONGITUDE',
+                                color='properties.TYPE_SITE_INTERVENTION',
+                                color_discrete_sequence=px.colors.qualitative.Plotly,
+                                opacity=1)
+    scatter.update_traces(marker={'size': 20})
+    scatter.add_trace(fig.data[0])
+    return scatter
