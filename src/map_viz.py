@@ -32,7 +32,7 @@ def add_choro_trace(fig, montreal_data, locations, z_vals, colorscale):
     fig.add_trace(go.Choroplethmapbox(geojson=montreal_data,
                   locations=locations, featureidkey='properties.NOM',
                   z=z_vals, colorscale=colorscale, showscale=False,
-                  marker_opacity=0.5))
+                  marker_opacity=0.2, hovertemplate=hover.map_base_hover_template()))
 
     return fig
 
@@ -53,9 +53,18 @@ def add_scatter_traces(fig, street_df):
 
     scatter = px.scatter_mapbox(street_df,
                                 lat='properties.LATITUDE', lon='properties.LONGITUDE',
+                                custom_data=['properties.NOM_PROJET',
+                                             'properties.MODE_IMPLANTATION', 
+                                             'properties.OBJECTIF_THEMATIQUE',
+                                             'properties.TYPE_SITE_INTERVENTION'],
                                 color='properties.TYPE_SITE_INTERVENTION',
+                                hover_data=['properties.TYPE_SITE_INTERVENTION'],
                                 color_discrete_sequence=px.colors.qualitative.Plotly,
                                 opacity=1)
-    scatter.update_traces(marker={'size': 20})
-    scatter.add_trace(fig.data[0])
-    return scatter
+    
+    scatter.update_traces(marker={'size': 20}, hovertemplate=hover.map_marker_hover_template('%{customdata[3]}'))
+    
+    for i, frame in enumerate(scatter.data):
+        fig.add_trace(scatter.data[i])
+
+    return fig
