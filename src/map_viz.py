@@ -58,5 +58,7 @@ def add_scatter_traces(fig, street_df):
                                 color_discrete_sequence=px.colors.qualitative.Plotly,
                                 opacity=1)
     scatter.update_traces(marker={'size': 20})
-    scatter.add_trace(fig.data[0])
-    return scatter
+    for i in range(len(scatter.data)):
+        fig.add_trace(scatter.data[i])
+    
+    return fig
