@@ -60,7 +60,7 @@ def map_marker_clicked(figure, curve, point, title, mode, theme, style): # noqa 
             style: The updated display style for the panel
     '''
 
-    name, mode, new_theme, _ = figure['data'][curve]['customdata'][point]
+    name, mode, new_theme = figure['data'][curve]['customdata'][point]
     
     title = html.Div(children=name,
                          style={'color': figure['data'][curve]['marker']['color']})
