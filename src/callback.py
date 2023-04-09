@@ -59,19 +59,18 @@ def map_marker_clicked(figure, curve, point, title, mode, theme, style): # noqa 
             theme: The updated display theme
             style: The updated display style for the panel
     '''
-    # Cleaner way to do this?
-    # Possible to use variables instead of 0,1,2 for customdata?
+
+    name, mode, new_theme, _ = figure['data'][curve]['customdata'][point]
     
-    new_title = html.Div(children=figure['data'][curve]['customdata'][point][0],
+    title = html.Div(children=name,
                          style={'color': figure['data'][curve]['marker']['color']})
     
-    new_mode = figure['data'][curve]['customdata'][point][1]
-    
-    new_theme = figure['data'][curve]['customdata'][point][2]
-    if new_theme != None:
-        new_theme = html.Div(['Thématique:',
+    if new_theme:
+        theme = html.Div(['Thématique :',
                             html.Ul([html.Li(x) for x in new_theme.split()])])
+    else:
+        theme = html.Div()
     
     style.update({'visibility': 'visible'})
     
-    return new_title, new_mode, new_theme, style
+    return title, mode, theme, style
