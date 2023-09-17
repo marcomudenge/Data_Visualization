@@ -3,8 +3,6 @@
 
 '''
     File name: app.py
-    Author: Olivia Gélinas
-    Course: INF8808
     Python Version: 3.8
 
     This file contains the source code for TP5.
@@ -12,8 +10,8 @@
 import json
 
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output, State
 
 import plotly.graph_objects as go
@@ -24,7 +22,7 @@ import helper
 import callback
 
 app = dash.Dash(__name__)
-app.title = 'TP5 | INF8808'
+app.title = 'MTL Pedestrian Routes'
 
 with open('./assets/data/montreal.json', encoding='utf-8') as data_file:
     montreal_data = json.load(data_file)
