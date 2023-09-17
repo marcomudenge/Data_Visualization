@@ -3,8 +3,6 @@
 
 '''
     File name: app.py
-    Author: Olivia Gélinas
-    Course: INF8808
     Python Version: 3.8
 
     This file contains the source code for TP4.
@@ -12,8 +10,8 @@
 import json
 
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 
 import pandas as pd
 
@@ -21,7 +19,7 @@ import preprocess
 import bubble
 
 app = dash.Dash(__name__)
-app.title = 'TP4 | INF8808'
+app.title = 'Countries GDP Over The Years'
 
 with open('../src/assets/data/countriesData.json') as data_file:
     data = json.load(data_file)
