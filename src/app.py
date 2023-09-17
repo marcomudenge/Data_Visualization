@@ -3,8 +3,6 @@
 
 '''
     File name: app.py
-    Author: Olivia Gélinas
-    Course: INF8808
     Python Version: 3.8
 
     This file is the entry point for our dash app.
@@ -12,8 +10,8 @@
 
 
 import dash
-import dash_html_components as html
-import dash_core_components as dcc
+from dash import html
+from dash import dcc
 from dash.dependencies import Input, Output, State
 
 import pandas as pd
@@ -26,7 +24,7 @@ from modes import MODES
 
 
 app = dash.Dash(__name__)
-app.title = 'TP2 | INF8808'
+app.title = 'Romeo and Juliet'
 
 
 def prep_data():
